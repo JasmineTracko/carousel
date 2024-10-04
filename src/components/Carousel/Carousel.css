@@ -1,0 +1,37 @@
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .carousel__slider {
+    display: flex;
+    gap: 24px;
+    align-items: flex-end;
+    width: 1280px;
+  }
+
+  .carousel-controllers {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+
+    .controllers__left,
+    .controllers__right {
+      border-radius: 4px;
+      border: 1px solid var(--primaryblue);
+      background-color: var(--white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      cursor: pointer;
+      &:hover {
+        background-color: var(--primarylight);
+      }
+    }
+
+    .controllers__right {
+      transform: rotate(180deg);
+    }
+  }
+}
