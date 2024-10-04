@@ -1,0 +1,22 @@
+.box-container {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-height: 140px;
+  display: flex;
+  padding: 6px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: var(--grey);
+
+  strong {
+    font-weight: 500;
+  }
+
+  &.active {
+    border: 1px solid var(--primaryblue);
+    &.description {
+      background-color: var(--primarylight);
+    }
+  }
+}
