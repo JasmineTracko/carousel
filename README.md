@@ -70,8 +70,8 @@ Use the **left** and **right** arrows to navigate through the timeline.
 
 ## Fonts
 
-- The fonts **Poppins** and **Roboto** are downloaded from Google Fonts.
+The fonts **Poppins** and **Roboto** are downloaded from Google Fonts.
 
 ## CustomHook
 
-- A custom hook, useResponsiveCarousel, is used to determine the screen size (mobile, tablet, or desktop). This hook dynamically sets the itemsPerPage property based on the width of the screen and fills the carousel data with white placeholders as skeletons to manage the central active tab. These skeleton items are invisible but help maintain the correct positioning for the timeline carousel.
+A custom hook, useResponsiveCarousel, is used to determine the screen size (mobile, tablet, or desktop). This hook dynamically sets the itemsPerPage property based on the width of the screen and fills the carousel data with white placeholders as skeletons to manage the central active tab. These skeleton items are invisible but help maintain the correct positioning for the timeline carousel.
