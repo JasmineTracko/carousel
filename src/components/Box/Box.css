@@ -1,9 +1,9 @@
 .box-container {
   border: 1px solid var(--border);
   border-radius: 8px;
-  min-height: 140px;
+  height: 120px;
   display: flex;
-  padding: 6px;
+  padding: 24px;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -11,6 +11,14 @@
 
   strong {
     font-weight: 500;
+  }
+
+  span {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    overflow: hidden;
   }
 
   &.active {
