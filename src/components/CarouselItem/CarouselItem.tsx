@@ -1,42 +1,43 @@
 import { FC } from "react";
-import { CarouselItemProps } from "../../models/utils";
+import { CarouselItemProps } from "../../models/carouselModels";
 import AmazonLogo from "../../svg/AmazonLogo";
 import Box from "../Box/Box";
 import YearBox from "../YearBox/YearBox";
 import clsx from "clsx";
+import EmptyCarouselItem from "../EmptyCarouselItem/EmptyCarouselItem";
+import { renderEmptyBoxes } from "./renderEmptyBoxes";
 import "./CarouselItem.css";
 
-interface CarouselItemWithActive extends CarouselItemProps {
+interface CarouselItemPropsWithActive extends CarouselItemProps {
   activeTab: boolean;
+  maxCompanyBoxesToDisplay: number;
 }
 
-const CarouselItem: FC<CarouselItemWithActive> = ({ activeTab, ...props }) => {
-  const { companies, description, year } = props;
+const CarouselItem: FC<{ props: CarouselItemPropsWithActive | null }> = ({
+  props,
+}) => {
+  if (!props) return <EmptyCarouselItem />;
+
+  const { companies, description, year, activeTab, maxCompanyBoxesToDisplay } =
+    props;
+
+  const emptyBoxes = maxCompanyBoxesToDisplay - companies.length;
 
   return (
-    <div className={clsx("carouselItem-container", activeTab && "active")}>
-      <div className="caroulselItem-container__companies">
+    <div className={clsx("carousel-item-container", activeTab && "active")}>
+      <div className="carousel-item__companies">
+        {renderEmptyBoxes(emptyBoxes)}
         {companies.map((company) => (
-          <Box
-            key={company.id}
-            className={clsx({
-              active: activeTab,
-            })}
-          >
+          <Box key={company.id} className={clsx({ active: activeTab })}>
             <AmazonLogo />
           </Box>
         ))}
-        <Box
-          className={clsx({
-            active: activeTab,
-            description: true,
-          })}
-        >
+        <Box className={clsx({ active: activeTab, description: true })}>
           <span dangerouslySetInnerHTML={{ __html: description }} />
         </Box>
       </div>
       <div
-        className={clsx("caroulselItem-container__separator", {
+        className={clsx("carousel-item__separator", {
           active: activeTab,
         })}
       />

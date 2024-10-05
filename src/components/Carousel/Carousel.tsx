@@ -1,8 +1,9 @@
 import { FC, useState } from "react";
 import CarouselItem from "../CarouselItem/CarouselItem";
-import { CarouselItemProps } from "../../models/utils";
+import { CarouselItemProps } from "../../models/carouselModels";
 import Arrow from "../../svg/Arrow";
 import "./Carousel.css";
+import { useResponsiveCarousel } from "../../hooks/useResponsiveCarousel";
 
 interface CarouselProps {
   data: CarouselItemProps[];
@@ -10,13 +11,11 @@ interface CarouselProps {
 
 const Carousel: FC<CarouselProps> = ({ data }) => {
   const [startIndex, setStartIndex] = useState(0);
-
-  const itemsPerPage = 5;
-
-  const centralIndex = Math.floor(itemsPerPage / 2);
+  const { itemsPerPage, paddedData, centralIndex, maxCompanyBoxesToDisplay } =
+    useResponsiveCarousel(data);
 
   const handleNext = () => {
-    if (startIndex + itemsPerPage < data.length) {
+    if (startIndex + itemsPerPage < paddedData.length) {
       setStartIndex(startIndex + 1);
     }
   };
@@ -27,24 +26,37 @@ const Carousel: FC<CarouselProps> = ({ data }) => {
     }
   };
 
-  const visibleItems = data.slice(startIndex, startIndex + itemsPerPage);
+  const visibleData = paddedData.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div className="carousel-container">
-      <div className="carousel__slider">
-        {visibleItems.map((item, index) => (
-          <CarouselItem {...item} activeTab={index === centralIndex} />
-        ))}
-      </div>
-      <div className="carousel-controllers">
-        <div className="controllers__left" onClick={handlePrev}>
-          <Arrow />
+    <>
+      <div className="carousel-container">
+        <div className="carousel__slider">
+          {visibleData.map((item, index) => (
+            <CarouselItem
+              key={`year-${item?.year || "null" + index}`}
+              props={
+                item
+                  ? {
+                      ...item,
+                      activeTab: index === centralIndex,
+                      maxCompanyBoxesToDisplay: maxCompanyBoxesToDisplay,
+                    }
+                  : null
+              }
+            />
+          ))}
         </div>
-        <div className="controllers__right" onClick={handleNext}>
-          <Arrow />
+        <div className="carousel__controllers">
+          <div className="controllers__left" onClick={handlePrev}>
+            <Arrow />
+          </div>
+          <div className="controllers__right" onClick={handleNext}>
+            <Arrow />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -2,17 +2,24 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  width: 100%;
+  align-items: center;
 
-  .carousel__slider {
+  .carousel__slider,
+  .carousel__controllers {
     display: flex;
-    gap: 24px;
     align-items: flex-end;
-    width: 1280px;
+    width: 100%;
+    max-width: 1280px;
   }
 
-  .carousel-controllers {
-    display: flex;
-    gap: 10px;
+  .carousel__slider {
+    gap: 24px;
+    height: 100%;
+  }
+
+  .carousel__controllers {
+    gap: 12px;
     justify-content: flex-end;
 
     .controllers__left,
@@ -32,6 +39,14 @@
 
     .controllers__right {
       transform: rotate(180deg);
+    }
+  }
+}
+
+@media (max-width: 424px) {
+  .carousel-container {
+    .carousel__controllers {
+      justify-content: center;
     }
   }
 }

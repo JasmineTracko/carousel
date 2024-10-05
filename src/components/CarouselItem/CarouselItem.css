@@ -1,13 +1,13 @@
-.carouselItem-container {
+.carousel-item-container {
   flex: 1 1 20%;
 
-  .carouselItem-container__companies {
+  .carousel-item__companies {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
 
-  .carouselItem-container__separator {
+  .carousel-item__separator {
     border-right: 1px solid var(--border);
     height: 60px;
     width: 50%;
@@ -19,7 +19,7 @@
 }
 
 @media (max-width: 1023px) {
-  .carouselItem-container {
+  .carousel-item-container {
     flex: 1 1 30%;
   }
 }
