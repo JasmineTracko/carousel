@@ -13,6 +13,6 @@ body {
   --grey: #374151;
   --primaryblue: #005eff;
   --primarylight: #eff5ff;
-  --hovercolor: #f0ffff;
   --white: #ffffff;
+  --emptycarouselfiller: #f9f9f9;
 }
