@@ -24,7 +24,7 @@ const Carousel: FC<CarouselProps> = ({ data }) => {
   };
 
   const handlePrev = () => {
-    if (startIndex > 0) {
+    if (!isStartReached) {
       setStartIndex(startIndex - 1);
     }
   };
