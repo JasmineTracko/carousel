@@ -1,9 +1,9 @@
 import { FC, useState } from "react";
 import CarouselItem from "../CarouselItem/CarouselItem";
 import { CarouselItemProps } from "../../models/carouselModels";
-import Arrow from "../../svg/Arrow";
 import "./Carousel.css";
 import { useResponsiveCarousel } from "../../hooks/useResponsiveCarousel";
+import CarouselControllers from "../CarouselControllers/CarouselControllers";
 
 interface CarouselProps {
   data: CarouselItemProps[];
@@ -13,6 +13,9 @@ const Carousel: FC<CarouselProps> = ({ data }) => {
   const [startIndex, setStartIndex] = useState(0);
   const { itemsPerPage, paddedData, centralIndex, maxCompanyBoxesToDisplay } =
     useResponsiveCarousel(data);
+
+  const carouselStartIndex = startIndex <= 0;
+  const carouselEndIndex = startIndex + itemsPerPage >= paddedData.length;
 
   const handleNext = () => {
     if (startIndex + itemsPerPage < paddedData.length) {
@@ -47,14 +50,12 @@ const Carousel: FC<CarouselProps> = ({ data }) => {
             />
           ))}
         </div>
-        <div className="carousel__controllers">
-          <div className="controllers__left" onClick={handlePrev}>
-            <Arrow />
-          </div>
-          <div className="controllers__right" onClick={handleNext}>
-            <Arrow />
-          </div>
-        </div>
+        <CarouselControllers
+          onPrev={handlePrev}
+          onNext={handleNext}
+          isPrevDisabled={carouselStartIndex}
+          isNextDisabled={carouselEndIndex}
+        />
       </div>
     </>
   );

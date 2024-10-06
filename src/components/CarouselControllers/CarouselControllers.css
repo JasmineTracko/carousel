@@ -1,0 +1,41 @@
+.carousel__controllers {
+  gap: 12px;
+  justify-content: flex-end;
+
+  .controllers__left,
+  .controllers__right {
+    border-radius: 4px;
+    border: 1px solid var(--primaryblue);
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--primarylight);
+    }
+
+    &.disabled {
+      background-color: var(--placeholder);
+      border-color: var(--grey);
+      cursor: not-allowed;
+      svg > path {
+        fill: var(--grey);
+        stroke: var(--grey);
+      }
+    }
+  }
+
+  .controllers__right {
+    transform: rotate(180deg);
+  }
+}
+
+@media (max-width: 1023px) {
+  .carousel-container {
+    .carousel__controllers {
+      justify-content: center;
+    }
+  }
+}

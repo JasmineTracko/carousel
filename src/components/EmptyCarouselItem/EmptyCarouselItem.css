@@ -1,6 +1,6 @@
 .empty-carousel-item {
   border: 1px solid var(--border);
-  background-color: var(--emptycarouselfiller);
+  background-color: var(--placeholder);
   border-radius: 8px;
   flex: 1 1 20%;
   height: 100%;
