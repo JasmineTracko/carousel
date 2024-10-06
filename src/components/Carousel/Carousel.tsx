@@ -14,11 +14,11 @@ const Carousel: FC<CarouselProps> = ({ data }) => {
   const { itemsPerPage, paddedData, centralIndex, maxCompanyBoxesToDisplay } =
     useResponsiveCarousel(data);
 
-  const carouselStartIndex = startIndex <= 0;
-  const carouselEndIndex = startIndex + itemsPerPage >= paddedData.length;
+  const isStartReached = startIndex <= 0;
+  const isEndReached = startIndex + itemsPerPage >= paddedData.length;
 
   const handleNext = () => {
-    if (startIndex + itemsPerPage < paddedData.length) {
+    if (!isEndReached) {
       setStartIndex(startIndex + 1);
     }
   };
@@ -53,8 +53,8 @@ const Carousel: FC<CarouselProps> = ({ data }) => {
         <CarouselControllers
           onPrev={handlePrev}
           onNext={handleNext}
-          isPrevDisabled={carouselStartIndex}
-          isNextDisabled={carouselEndIndex}
+          isPrevDisabled={isStartReached}
+          isNextDisabled={isEndReached}
         />
       </div>
     </>
